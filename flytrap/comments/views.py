@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 #
 # Created by flytrap
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny
+from flytrap.base.view import BaseModeView
 from .serializers import CommentSerializer
 from .filter import CommentFilter
 from .models import Comment
 
 
-class CommentViewSet(ModelViewSet):
+class CommentViewSet(BaseModeView):
+    permission_classes = (AllowAny,)
     serializer_class = CommentSerializer
     filter_class = CommentFilter
     queryset = Comment.objects.filter(is_valid=True)
@@ -16,11 +18,6 @@ class CommentViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         """query"""
         return super(CommentViewSet, self).list(request, *args, **kwargs)
-
-    def clean_data(self):
-        for k, v in self.request.data.items():
-            if v is not False and not v:
-                del self.request.data[k]
 
     def create(self, request, *args, **kwargs):
         self.clean_data()

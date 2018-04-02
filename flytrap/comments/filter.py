@@ -10,7 +10,7 @@ class CommentFilter(FilterSet):
     class Meta:
         model = Comment
         fields = {
-            'author': ['in'],
+            'author_id': ['in'],
             'is_valid': ['exact'],
             'email': ['exact'],
             'content_type': ['exact'],

@@ -24,7 +24,8 @@ setup(
     install_requires=[
         "Django>=2.0",
         "djangorestframework==3.7.3",
-        "django-filter==1.1.0"
+        "django-filter==1.1.0",
+        "flytrap-base==0.0.5"
     ],
     packages=find_packages(),
     test_suite="runtests.runtests",

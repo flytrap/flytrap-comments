@@ -10,7 +10,7 @@ Comments
 
 2. Include the comments URLconf in your project urls.py like this::
 
-    url(r'^comments/', include('flytrap.comments.urls', namespace='flytrap.comments'), ),
+    url(r'^comments/', include('flytrap.comments.urls'), ),
 
 3. Run `python manage.py migrate` to create the comments models.
 

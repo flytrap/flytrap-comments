@@ -15,18 +15,19 @@ User = get_user_model()
 class Comment(models.Model):
     author = models.ForeignKey(User, null=True, related_name="comments", on_delete=False)
 
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=255, blank=True)
-    website = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=255, null=True, blank=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
 
-    content_type = models.ForeignKey(ContentType, on_delete=False)
-    object_id = models.IntegerField()
+    content_type = models.ForeignKey(ContentType, on_delete=False, null=True, blank=True)
+    object_id = models.IntegerField(null=True, blank=True)
     content_object = GenericForeignKey()
 
+    type = models.CharField(max_length=128, default='')
     comment = models.TextField()
 
     submit_date = models.DateTimeField(default=datetime.now)
-    ip_address = models.GenericIPAddressField(null=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     public = models.BooleanField(default=True)
 
     reply = models.ForeignKey('self', null=True, blank=True, on_delete=True, related_name='reply_comment')

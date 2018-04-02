@@ -10,7 +10,6 @@ from .models import Comment
 class CommentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True, help_text='id')
     name = serializers.CharField(required=False, help_text=u'姓名')
-    object_id = serializers.CharField(help_text='评论对象id')
 
     class Meta:
         model = Comment
